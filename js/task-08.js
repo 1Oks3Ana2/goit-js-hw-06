@@ -5,14 +5,24 @@ formRef.addEventListener("submit", onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
 
-  const {
-    elements: { email, password },
-  } = event.currentTarget;
+  let email = event.currentTarget.elements.email.value;
+  let password = event.currentTarget.elements.password.value;
+
+  const inputData = {
+    email,
+    password,
+  };
 
   if (email.value === "" || password.value === "") {
     return alert("All fields should be filled in!");
   }
 
-  console.log(`Email: ${email.value}, Password: ${password.value}`);
-  event.currentTarget.value.reset();
+  console.log(inputData);
+
+  // formRef.id = "form";
+
+  console.log(formRef.id);
+  formRef.setAttribute("id", "form");
+  document.getElementById("form").reset();
+  // event.currentTarget.reset();
 }

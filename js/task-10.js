@@ -20,14 +20,18 @@ function createBoxes(amount) {
     newBox.style.height = `${size}px`;
     newBox.style.backgroundColor = getRandomHexColor();
     boxRef.push(newBox);
+    console.log(boxRef);
   }
   boxesListRef.append(...boxRef);
 }
 
-inputRef.addEventListener("input", () => {
+inputRef.addEventListener("input", (event) => {
+  let amount = parseInt(inputRef.value);
+
   createBtnRef.addEventListener("click", () => {
-    const amount = Number(inputRef.value);
-    createBoxes(amount);
+    if (amount >= inputRef.min || amount <= inputRef.max) {
+      createBoxes(amount);
+    }
   });
 });
 
